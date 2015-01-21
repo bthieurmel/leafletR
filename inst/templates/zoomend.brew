@@ -1,0 +1,27 @@
+<%# 
+    INITIALIZE FUNCTION
+-%>
+  	
+    map.on('zoomend', onZoomend);
+		function onZoomend(){
+<%  for(n in 1:length(data)) {
+		  layer.name <- names(data)[n]
+		  if(!is.null(layer.name)){
+        layer.name <- gsub("[_.]", " ", layer.name)
+		  } 
+		  if(is.null(layer.name)){
+        layer.name <- gsub("_", " ", paste(head(strsplit(basename(data[[n]]), "[.]")[[1]], -1), collapse="_"))
+		  }else if(layer.name==""){
+        layer.name <- gsub("_", " ", paste(head(strsplit(basename(data[[n]]), "[.]")[[1]], -1), collapse="_"))
+		  }
+
+      zmin <- zoomlevel[[n]][1]
+      zmax <- zoomlevel[[n]][2]
+-%>
+		if(map.getZoom()>=<%= zmin %> && map.getZoom()<=<%= zmax %>){
+			map.addLayer(layers['<%= layer.name %>']);
+		}else{
+			map.removeLayer(layers['<%= layer.name %>']);
+		};
+<%  } -%>
+}

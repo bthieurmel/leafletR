@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<%	if(any(!is.na(data))) { -%>
+<%		if(!incl.data) -%>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<%		if(any(topojson==TRUE)) -%>
+	<script src="http://d3js.org/topojson.v1.min.js"></script>
+<%		for(n in 1:length(data)) { -%>
+	<link rel="dat<%= n %>" type="application/json" href="<%= basename(data[[n]]) %>" />
+<%		} -%>
+<%	} -%>
+<%	brew(system.file("templates/css.brew", package = "leafletR")) -%>
+</head>
+<body>
+	<div id="map"></div>
+	<script type="text/javascript">
+<%	# map initialisation
+ 	brew(system.file("templates/map.brew", package = "leafletR")) 
+	
+	if (!any(is.na(data))) { # if there is at least one data layer
+		# popup
+		if(!missing(popup)) brew(system.file("templates/popup.brew", package = "leafletR")) 
+		# styling
+		if(any(!is.na(style))) brew(system.file("templates/style.brew", package = "leafletR"))
+		# data layers
+		brew(system.file("templates/data.brew", package = "leafletR"))
+		# legend
+		if(legend.ctrl) if(!any(is.na(style))) brew(system.file("templates/legend.brew", package = "leafletR"))
+    # zoomend
+    if(any(!is.na(zoomlevel))) brew(system.file("templates/zoomend.brew", package = "leafletR"))
+	}
+	# layer control
+	if(layer.ctrl) brew(system.file("templates/layer.brew", package = "leafletR"))
+-%>
+	</script>
+</body>
+</html>
