@@ -17,7 +17,7 @@
 #' \emph{Conversion of external spatial data files}
 #' 
 #' \code{toGeoJSON} uses the Ogre web API (\url{http://ogre.adc4gis.com}). See
-#' the \href{http://ogre.adc4gis.comOgre} website for a list of supported
+#' the \url{http://ogre.adc4gis.comOgre} website for a list of supported
 #' formats. Please note that for Shapefiles, MapInfo and VRT, Ogre only accepts
 #' a zip file. The Ogre API does not support large files (>15 MB). Have a look
 #' at the \code{rgdal} package and its \code{writeOGR} function, to convert

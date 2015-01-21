@@ -24,14 +24,14 @@ it contains conversion tools for sp spatial objects, several popular spatial
 vector data formats and R data frames containing point coordinates.
 
 \code{leafletR} features open base map tiles. Map data is provided by the
-\href{http://www.openstreetmap.orgOpenStreetMap} project and satellite
+\url{http://www.openstreetmap.orgOpenStreetMap} project and satellite
 images are provided by courtesy of NASA/ JPL-Caltech and U.S. Department of
 Agriculture, Farm Service Agency. Other tile sources maybe added manually.
 
 Try the example below to check if \code{leafletR} has been correctly
 installed. Any question and feedback is welcome via email to
 <christian.graul@gmail.com> or on
-\href{https://github.com/chgrl/leafletRGitHub}.
+\url{https://github.com/chgrl/leafletRGitHub}.
 }
 \examples{
 # load example data (Fiji Earthquakes)
